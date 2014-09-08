@@ -77,7 +77,6 @@ HTTP := chrome
 
 # Web Rendering
 ENABLE_WEBGL := true
-PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
 TARGET_FORCE_CPU_UPLOAD := true
 
 # Partitions
