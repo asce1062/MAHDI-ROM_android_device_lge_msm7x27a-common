@@ -208,9 +208,9 @@ static const str_map effects[] = {
     { QCameraParameters::EFFECT_WHITEBOARD, CAMERA_EFFECT_WHITEBOARD },
     { QCameraParameters::EFFECT_BLACKBOARD, CAMERA_EFFECT_BLACKBOARD },
     { QCameraParameters::EFFECT_AQUA,       CAMERA_EFFECT_AQUA },
-    //{ QCameraParameters::EFFECT_EMBOSS,     CAMERA_EFFECT_EMBOSS },
-    //{ QCameraParameters::EFFECT_SKETCH,     CAMERA_EFFECT_SKETCH },
-    //{ QCameraParameters::EFFECT_NEON,       CAMERA_EFFECT_NEON }
+    { QCameraParameters::EFFECT_EMBOSS,     CAMERA_EFFECT_EMBOSS },
+    { QCameraParameters::EFFECT_SKETCH,     CAMERA_EFFECT_SKETCH },
+    { QCameraParameters::EFFECT_NEON,       CAMERA_EFFECT_NEON }
 };
 
 static const str_map iso[] = {
@@ -2114,13 +2114,8 @@ status_t QCameraHardwareInterface::setFocusMode(const QCameraParameters& params)
                                       (void *)&value);
 
                 int cafSupport = FALSE;
-                //Add to support disable video CAF with adb command. 1(default): enable, 0: disable
-                char prop[PROPERTY_VALUE_MAX];
-                property_get("persist.camera.hal.videocaf", prop, "1");
-                int videocaf_enalbed = atoi(prop);
-                if(videocaf_enalbed &&
-                   ( !strcmp(str, QCameraParameters::FOCUS_MODE_CONTINUOUS_VIDEO) ||
-                   !strcmp(str, QCameraParameters::FOCUS_MODE_CONTINUOUS_PICTURE) )){
+                if(!strcmp(str, QCameraParameters::FOCUS_MODE_CONTINUOUS_VIDEO) ||
+                   !strcmp(str, QCameraParameters::FOCUS_MODE_CONTINUOUS_PICTURE)){
                     cafSupport = TRUE;
                 }
                 ALOGI("Continuous Auto Focus %d", cafSupport);

@@ -1,2 +1,2 @@
-MAHDI_android_device_lge_msm7x27a-common
+android_device_lge_msm7x27a-common
 ==================================
